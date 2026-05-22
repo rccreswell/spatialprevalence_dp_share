@@ -82,8 +82,8 @@ trends[[3]] <- readRDS("outputs/trends/rdata/cluster_1-2021_sigma_1e-06.rds") +
 
 p <- plot_grid(maps[[1]], trends[[1]], maps[[2]], trends[[2]], maps[[3]], trends[[3]],
                ncol = 2)
-ggsave(p, file = "outputs/maps_trends_sens_sigma.png", width = 14, height = 10)
-ggsave(p, file = "outputs/maps_trends_sens_sigma.pdf", width = 14, height = 10)
+ggsave(p, file = "outputs/maps_trends_sens_sigma.png", width = 14, height = 15)
+ggsave(p, file = "outputs/maps_trends_sens_sigma.pdf", width = 14, height = 15)
 
 
 

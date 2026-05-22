@@ -7,19 +7,21 @@ mmyy_df <- read.csv("data/processed/mmyy_df.csv")
 results <- vector(mode='list', nrow(mmyy_df))
 n_chains = 4
 
-for(mmyy_temp in mmyy_df$mmyy){
+for(i in seq_along(mmyy_df$mmyy)){
+  mmyy_temp <- mmyy_df$mmyy[i]
   print(mmyy_temp)
   
   # read output file with number clusters for each iteration in a given month
   df_temp <- readRDS(paste0("data/processed/all_chains_all_clustertrend_assignment_",
                             mmyy_temp, ".rds"))
+  length(df_temp)
   
   # mmyy_temp = "3-2021"
   # df_temp <- `all_chains_all_clustertrend_assignment_3-2021`
   
   # Store results from all chain in a month specific list
   chains_clusters_list <- vector(mode='list', n_chains)
-  j =1
+  j = 1
   # Calculate the maximum (or no. of clusters) of each iteration and each chain
   for(chain in 1:n_chains){
     # Calculate the maximum (or no. of clusters) of each iteration
@@ -36,7 +38,6 @@ for(mmyy_temp in mmyy_df$mmyy){
   chains_clusters_df <- do.call("rbind", chains_clusters_list)
   
   results[[i]] = chains_clusters_df
-  i = i + 1
 }
 
 results_df <- do.call("rbind", results) %>%

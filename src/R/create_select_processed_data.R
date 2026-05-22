@@ -65,12 +65,13 @@ dat <- dat %>%
 saveRDS(dat, "data/processed/ons_prev_england.rds")
 
 # ------------------------------------------------------------------------------
-# Create monthly mobility processed data
-source("src/R/functions/function_create_monthly_mobility.R")
-create_monthly_mobility("data/raw/covariates/mobility_lad_weekly.csv")
-
-
-# ------------------------------------------------------------------------------
-# Create distance between LTLAs and if they are neighbours
-source("src/R/functions/function_create_distance_between_ltlas_and_neighbours.R")
-create_distance_between_ltlas()
+# FAKE RAW MOBILITY FILES ARE TOO LARGE, SO ONLY ADDED THE FINAL PROCESSED FILES ON GITHUB
+# # Create monthly mobility processed data
+# source("src/R/functions/function_create_monthly_mobility.R")
+# create_monthly_mobility("data/raw/covariates/mobility_lad_weekly.csv")
+# 
+# 
+# # ------------------------------------------------------------------------------
+# # Create distance between LTLAs and if they are neighbours
+# source("src/R/functions/function_create_distance_between_ltlas_and_neighbours.R")
+# create_distance_between_ltlas()
