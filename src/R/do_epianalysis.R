@@ -201,40 +201,40 @@ do_epianalysis <- function(mmyy, maxIters){
     # plot(dat$prob, p_pred)
     
     # zero-one inflated beta regression
-    m_zoib <- gamlss(prob ~ mob_per_pop_within_diff + 
-                       mob_per_pop_between + 
+    m_zoib <- gamlss(prob ~ mob_per_pop_within_diff +
+                       mob_per_pop_between +
                        imd_per10_diff +
                        pop_density_per1000_diff +
                        prop_diff +
                        distance_km_per100 +
-                       is_neighbour, 
+                       is_neighbour,
                      family = BEINF,
-                     nu.fo = ~ mob_per_pop_within_diff + 
-                       mob_per_pop_between + 
+                     nu.fo = ~ mob_per_pop_within_diff +
+                       mob_per_pop_between +
                        imd_per10_diff +
                        pop_density_per1000_diff +
                        prop_diff +
                        distance_km_per100 +
-                       is_neighbour, 
-                     tau.fo = ~ mob_per_pop_within_diff + 
-                       mob_per_pop_between + 
+                       is_neighbour,
+                     tau.fo = ~ mob_per_pop_within_diff +
+                       mob_per_pop_between +
                        imd_per10_diff +
                        pop_density_per1000_diff +
                        prop_diff +
                        distance_km_per100 +
                        is_neighbour,
                      data = dat)
-    
+
     summary(m_zoib)
     # Pseudo-R² for the BEINF model
     pR2(m_zoib)
     pR2(m2)
-    
+
     AIC(m1, m_zoib, m2)
-    
+
     # Reshape data to long format
     dat_long <- dat %>%
-      select(prob, 
+      select(prob,
              mob_per_pop_within_diff,
              mob_per_pop_between,
              imd_per10_diff,
@@ -243,7 +243,7 @@ do_epianalysis <- function(mmyy, maxIters){
              distance_km_per100,
              is_neighbour)
     dat_long <- pivot_longer(dat_long, cols = -prob, names_to = "variable", values_to = "value")
-    
+
     # Plot outcome vs each variable in facets
     ggplot(dat_long, aes(x = value, y = prob)) +
       geom_point(alpha = 0.6) +

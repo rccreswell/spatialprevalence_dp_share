@@ -34,8 +34,9 @@ for(temp_mmyy in mmyy_vector$mmyy){
   # Extract number of clusters a given month
   n_cl_temp = readRDS(paste0("data/processed/final_clustertrend_assignment_",
                                  temp_mmyy, ".rds")) %>%
-    select(final_clusters) %>%
-    max() 
+    dplyr::pull(final_clusters) %>%
+    as.numeric() %>%
+    max(na.rm = TRUE)
   
   n_cl_temp_row <- data.frame("month_year" = temp_mmyy, "n_clusters" = n_cl_temp)
   
