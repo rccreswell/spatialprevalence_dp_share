@@ -3,6 +3,8 @@
 .Rproj.user/
 *.Rproj
 *.rds
+!data/processed/covariates/ltla_monthly_mobility_processed_between.rds
+!data/processed/covariates/ltla_monthly_mobility_processed_within.rds
 *.pdf
 *.png
 *.svg
