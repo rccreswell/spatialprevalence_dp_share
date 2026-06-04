@@ -3,7 +3,7 @@
 This repository contains the R code accompanying the paper:
 
 > **Evolution of the spatial scales of transmission of SARS-CoV-2 in England**  
-> Sumali Bajaj, Ioana Bouros, Katherine M. Shepherd, Anne Cori, Moritz U.G. Kraemer, Richard Creswell\*, Ben Lambert\*  
+> Sumali Bajaj, Ioana Bouros, Katherine M. Shepherd, Anne Cori, Moritz U.G. Kraemer, Richard Creswell\*, Ben Lambert\*  *(in preparation)*
 > \*Equal contribution
 
 ## Overview
@@ -37,9 +37,9 @@ spatialprevalence_dp_share/
 
 ## Data
 
-**Prevalence estimates** (`data/raw/ltla_in_region_debiased_prev.csv`): Weekly LTLA-specific SARS-CoV-2 prevalence for England, produced using the causal debiasing method of Nicholson et al. (2022) as implemented in Bajaj et al. (2024).
+**Prevalence estimates** (`data/raw/ltla_in_region_debiased_prev.csv`): Weekly LTLA-specific SARS-CoV-2 prevalence for England.
 
-**Mobility** (`data/raw/covariates/mobility_lad_weekly.csv`): Aggregated weekly trip counts within and between LTLAs, provided by O2. To request access to this dataset, contact o2@businesso2.co.uk.
+**Mobility** (`data/processed/covariates/ltla_monthly_mobility_processed_between.csv` and `data/processed/covariates/ltla_monthly_mobility_processed_within.csv`): (synthetic) Aggregated monthly mobility within and between LTLAs. The mobility dataset included in this repository is synthetic and provided for reproducibility purposes. Real mobility data are not publicly available due to licensing restrictions.
 
 **Covariates**: Index of Multiple Deprivation (IMD 2019), population density, age structure (proportion over 64), and LTLA boundary shapefiles — all from ONS and included in `data/raw/`.
 
@@ -70,8 +70,9 @@ source("src/R/run_and_plot_epianalysis.R")
 
 ### 5. Sensitivity analyses
 ```r
-source("src/R/sensitivity_alpha.R")   # varying α ∈ {1, 2, 5}
-source("src/R/sensitivity_sigma.R")   # varying σ ∈ {1e-4, 1e-5, 1e-6}
+src/R/sensitivity_alpha.R"   # varying α ∈ {1, 2, 5}
+src/R/sensitivity_sigma.R   # varying σ ∈ {1e-4, 1e-5, 1e-6}
+src/R/sensitivity_all_chains.R   # number of clusters across MCMC chains for all months
 ```
 
 ## Key model settings
@@ -98,7 +99,7 @@ If you use this code, please cite:
 
 > Bajaj S, Bouros I, Shepherd KM, Cori A, Kraemer MUG, Creswell R\*, Lambert B\*. Evolution of the spatial scales of transmission of SARS-CoV-2 in England. *(in preparation)*
 
-The Gibbs sampling implementation is adapted from [Li (2019)](https://github.com/liyuqian/dp-mixture).
+The Gibbs sampling implementation is adapted from [Li (2019)](https://www.sciencedirect.com/science/article/abs/pii/S0022249618301068).
 
 ## License
 
