@@ -47,14 +47,15 @@ plot_and_save_last_iter <- function(data, data_location_fine, results_final, mmy
 
   p_cl_obs <- ggplot(data = results_plot, aes(x = as.Date(week_date), y = mean_prev, group = final_clusters)) +
     geom_jitter(aes(color = final_clusters), 
-                show.legend = FALSE, alpha = 0.7, size = 2, stroke = 0) +
+                show.legend = FALSE, alpha = 0.7, size = 2, stroke = 0, width = 2.0, height=0) +
     geom_line(data = results_plot_sum, aes(color = final_clusters), show.legend = FALSE) +
     theme_bw() +
     scale_y_continuous(limits = c(0, 0.07)) +
-    scale_x_date(date_labels = "%d %b %y") + 
+    scale_x_date(date_labels = "%d %b %y", breaks = unique(as.Date(results_plot$week_date))) + 
     # scale_color_brewer(palette = "Set2") +
     scale_color_manual(values = my_color, aesthetics = c("color", "fill")) +
-    labs(x = "", y = "")
+    labs(x = "Week", y = "Prevalence") +
+    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 
   print(p_cl_obs)
 
