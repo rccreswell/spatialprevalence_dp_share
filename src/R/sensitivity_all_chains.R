@@ -48,7 +48,8 @@ results_df <- do.call("rbind", results) %>%
   
 # Plot convergence for all months
 p <- ggplot(data = results_df %>% filter(n_clusters < 30) %>%
-              filter(iter > max(iter)/2),
+              # filter(iter > max(iter)/2),
+              filter(iter > 0),
 # p <- ggplot(data = results_df,          
             aes(x = iter, y = n_clusters, group = chain_number)) +
   geom_line(aes(color = chain_number)) +

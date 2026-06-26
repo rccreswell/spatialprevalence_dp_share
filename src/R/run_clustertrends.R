@@ -28,7 +28,7 @@ for(temp_monthyear in unique(weeks_monthyear$monthyear)){
     print("only one week in this month, so moving on to next month")
   } else{
     create_clustertrends(dat_og = dat_og, weeks = temp_weeks, n_more_chains = 3,
-                         alpha = 2, sigma_mult_factor = 1/100000, maxIters = 2000) 
+                         alpha = 2, sigma_mult_factor = 1/100000, maxIters = 10000) 
     
     # For sensitivity of Alpha, uncomment the following lines:
     # create_clustertrends(dat_og = dat_og, weeks = temp_weeks, n_more_chains = 3,
